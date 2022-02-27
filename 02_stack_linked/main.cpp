@@ -11,12 +11,8 @@ class StackElement {
             this->data = data;
             this->prev = prev;
         }
-        int get_data() {
-            return this->data;
-        }
-        StackElement* get_prev() {
-            return this->prev;
-        }
+        int get_data() { return this->data; }
+        StackElement* get_prev() { return this->prev; }
 };
 
 class Stack {
@@ -31,9 +27,7 @@ class Stack {
         bool is_empty();
 };
 
-Stack::Stack() {
-    this->top = NULL;
-}
+Stack::Stack() { this->top = NULL; }
 
 void Stack::push(int var) {
     StackElement* new_elem = new StackElement(var, top);
@@ -53,16 +47,12 @@ int Stack::pop() {
     return var;
 }
 
-int Stack::peek() {
-    return this->top->get_data();
-}
+int Stack::peek() { return this->top->get_data(); }
 
-bool Stack::is_empty() {
-    return this->top == NULL;
-}
+bool Stack::is_empty() { return this->top == NULL; }
 
 int main(void) {
-    Stack *a = new Stack();
+    Stack* a = new Stack();
     std::cout << "init" << std::endl;
 
     std::cout << "push 37" << std::endl;
@@ -81,7 +71,7 @@ int main(void) {
 
     try {
         std::cout << "try to pop, result: " << a->pop() << std::endl;
-    } catch (const std::exception &e) {
+    } catch(const std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 

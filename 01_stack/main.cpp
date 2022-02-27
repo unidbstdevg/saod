@@ -3,7 +3,7 @@
 
 class Stack {
     private:
-        int *array;
+        int* array;
         int size;
         int pointer;
 
@@ -14,7 +14,7 @@ class Stack {
 };
 
 int main(void) {
-    Stack *a = new Stack(3);
+    Stack* a = new Stack(3);
     std::cout << "init with size = 3" << std::endl;
 
     std::cout << "push 37" << std::endl;
@@ -29,7 +29,7 @@ int main(void) {
     try {
         std::cout << "try to push 7" << std::endl;
         a->push(7);
-    } catch (const std::exception &e) {
+    } catch(const std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
@@ -39,7 +39,7 @@ int main(void) {
 
     try {
         std::cout << "try to pop, result: " << a->pop() << std::endl;
-    } catch (const std::exception &e) {
+    } catch(const std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 

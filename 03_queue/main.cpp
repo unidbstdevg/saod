@@ -6,23 +6,14 @@ class QueueElement {
         int data;
         QueueElement* next;
 
-        bool is_last() {
-            return this->next == NULL;
-        }
     public:
         QueueElement(int data) {
             this->data = data;
             this->next = NULL;
         }
-        int get_data() {
-            return this->data;
-        }
-        QueueElement* get_next() {
-            return this->next;
-        }
-        void set_next(QueueElement* next) {
-            this->next = next;
-        }
+        int get_data() { return this->data; }
+        QueueElement* get_next() { return this->next; }
+        void set_next(QueueElement* next) { this->next = next; }
 };
 
 class Queue {
@@ -76,12 +67,10 @@ int Queue::peek() {
     return first->get_data();
 }
 
-bool Queue::is_empty() {
-    return this->first == NULL;
-}
+bool Queue::is_empty() { return this->first == NULL; }
 
 int main(void) {
-    Queue *a = new Queue();
+    Queue* a = new Queue();
     std::cout << "init" << std::endl;
 
     std::cout << "enqueue 37" << std::endl;
@@ -100,7 +89,7 @@ int main(void) {
 
     try {
         std::cout << "try to dequeue, result: " << a->dequeue() << std::endl;
-    } catch (const std::exception &e) {
+    } catch(const std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
