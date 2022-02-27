@@ -29,7 +29,7 @@ int main(void) {
     try {
         std::cout << "try to push 7" << std::endl;
         a->push(7);
-    } catch (const exception &e) {
+    } catch (const std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
@@ -39,7 +39,7 @@ int main(void) {
 
     try {
         std::cout << "try to pop, result: " << a->pop() << std::endl;
-    } catch (const exception &e) {
+    } catch (const std::exception &e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 
