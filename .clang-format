@@ -3,3 +3,4 @@ IndentWidth: 4
 SpaceBeforeParens: Never
 IndentAccessModifiers: true
 PointerAlignment: Left
+AlwaysBreakTemplateDeclarations: Yes
