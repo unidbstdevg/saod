@@ -79,18 +79,19 @@ class BTree {
             auto left = last_node->left();
             auto right = last_node->right();
 
+            // lesser
             if(new_node->value() < last_node->value()) {
                 if(left)
                     _add(left, new_node);
                 else
                     last_node->set_left(new_node);
-            } else if(new_node->value() > last_node->value()) {
+            }
+            // greater or equal
+            else if(new_node->value() >= last_node->value()) {
                 if(right)
                     _add(right, new_node);
                 else
                     last_node->set_right(new_node);
-            } else {
-                cout << "TODO(_add): something is equal" << endl;
             }
         }
 
