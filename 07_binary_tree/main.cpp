@@ -1,8 +1,10 @@
 #include "binary_tree.h"
 #include <iostream>
 #include <stdexcept>
+using std::boolalpha;
 using std::cout;
 using std::endl;
+using std::noboolalpha;
 
 BTree<int>* tree;
 
@@ -16,7 +18,10 @@ void add(int elem) {
     tree->add(elem);
 }
 
-void height() { cout << "height: " << tree->height() << endl; }
+void height() {
+    uint res = tree->height();
+    cout << "height: " << res << endl;
+}
 
 enum traverse_order { PREFIX, INFIX, POSTFIX };
 void traverse(traverse_order ord) {
