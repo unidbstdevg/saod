@@ -15,14 +15,13 @@ class BTNode {
     public:
         BTNode(T value) { value_ = value; };
 
+        void set_value(T value) { value_ = value; }
         void set_left(BTNode* left) { left_ = left; }
         void set_right(BTNode* right) { right_ = right; }
 
+        T value() { return value_; }
         BTNode* left() { return left_; }
         BTNode* right() { return right_; }
-
-        void value(T value) { value_ = value; }
-        T value() { return value_; }
 };
 
 template <typename T>
