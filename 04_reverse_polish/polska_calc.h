@@ -39,9 +39,6 @@ PolskaCalc::PolskaCalc(std::string inp) {
             // Throws exception if operator is not known
             int priority = get_priority(c);
 
-            /* если на вершине операция с приоритетом >=, то её вытаскиваем и
-             * пишем в результирующу строку */
-
             if(c == ')') {
                 while(!temp.empty()) {
                     char tc = temp.top();
