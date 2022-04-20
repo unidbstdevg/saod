@@ -23,6 +23,10 @@ class BTNode {
         T value() { return value_; }
         BTNode* left() { return left_; }
         BTNode* right() { return right_; }
+
+        uint childrens_count() {
+            return ((left_) ? 1 : 0) + ((right_) ? 1 : 0);
+        }
 };
 
 template <typename T>
