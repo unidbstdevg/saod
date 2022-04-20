@@ -13,6 +13,11 @@ void init() {
     tree = new BTree<int>();
 }
 
+void write_graphviz(std::string filename) {
+    cout << "writing graphviz to " << filename << endl;
+    tree->write_graphviz(filename);
+}
+
 void add(int elem) {
     cout << "adding '" << elem << "'" << endl;
     tree->add(elem);
@@ -67,6 +72,9 @@ int main(void) {
     add(10);
     add(14);
     add(13);
+
+    cout << endl;
+    write_graphviz("init.dot");
 
     cout << endl;
     height();

@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include <vector>
 using std::cout;
@@ -73,6 +74,18 @@ class BTree {
             BTNode<T>* node = _find_node(root, val);
             return (bool)node;
         }
+
+        void write_graphviz(std::string filename) {
+            std::ofstream file;
+            file.open(filename);
+
+            file << "digraph {" << endl;
+            _write_graphviz(file, root);
+            file << "}" << endl;
+
+            file.close();
+        }
+
     private:
         void _add(BTNode<T>* last_node, BTNode<T>* new_node) {
             if(!last_node) {
@@ -208,6 +221,24 @@ class BTree {
                 } else {
                     return _find_node(left, val);
                 }
+            }
+        }
+
+        void _write_graphviz(std::ofstream& file, BTNode<T>* last_node) {
+            if(!last_node)
+                return;
+
+            auto left = last_node->left();
+            auto right = last_node->right();
+
+            if(left) {
+                file << last_node->value() << " -> " << left->value() << endl;
+                _write_graphviz(file, last_node->left());
+            }
+
+            if(right) {
+                file << last_node->value() << " -> " << right->value() << endl;
+                _write_graphviz(file, last_node->right());
             }
         }
 };
