@@ -85,16 +85,7 @@ class BTree {
             if(!node)
                 return;
 
-            uint childrens_count = node->childrens_count();
-
-            switch(childrens_count) {
-            case 0:
-                _remove_leaf(node, parent_node);
-                break;
-            case 1:
-                _remove_bend(node, parent_node);
-                break;
-            }
+            _remove_node(node, parent_node);
         }
 
         void write_graphviz(std::string filename) {
@@ -243,6 +234,19 @@ class BTree {
                 } else {
                     return _find_node(left, val, out_parent_node);
                 }
+            }
+        }
+
+        void _remove_node(BTNode<T>* node, BTNode<T>* parent_node) {
+            uint childrens_count = node->childrens_count();
+
+            switch(childrens_count) {
+            case 0:
+                _remove_leaf(node, parent_node);
+                break;
+            case 1:
+                _remove_bend(node, parent_node);
+                break;
             }
         }
 
