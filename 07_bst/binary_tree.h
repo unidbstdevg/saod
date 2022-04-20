@@ -91,6 +91,9 @@ class BTree {
             case 0:
                 _remove_leaf(node, parent_node);
                 break;
+            case 1:
+                _remove_bend(node, parent_node);
+                break;
             }
         }
 
@@ -258,6 +261,28 @@ class BTree {
 
             delete node;
         }
+
+        void _remove_bend(BTNode<T>* node, BTNode<T>* parent_node) {
+            if(!node)
+                return;
+
+            auto left = node->left();
+            auto right = node->right();
+            BTNode<T>* child;
+
+            if(left)
+                child = left;
+            else
+                child = right;
+
+            if(parent_node->left() == node)
+                parent_node->set_left(child);
+            else
+                parent_node->set_right(child);
+
+            delete node;
+        }
+
         void _write_graphviz(std::ofstream& file, BTNode<T>* last_node) {
             if(!last_node)
                 return;

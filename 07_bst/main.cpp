@@ -97,6 +97,9 @@ int main(void) {
     remove(13);
     traverse(PREFIX);
     write_graphviz("after_remove_1.dot");
+    remove(10);
+    traverse(PREFIX);
+    write_graphviz("after_remove_2.dot");
 
     delete tree;
     return 0;
