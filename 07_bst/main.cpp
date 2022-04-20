@@ -79,7 +79,7 @@ int main(void) {
     add(13);
 
     cout << endl;
-    write_graphviz("init.dot");
+    write_graphviz("0_init.dot");
 
     cout << endl;
     height();
@@ -96,10 +96,10 @@ int main(void) {
     cout << endl;
     remove(13);
     traverse(PREFIX);
-    write_graphviz("after_remove_1.dot");
+    write_graphviz("1_after_remove_13.dot");
     remove(10);
     traverse(PREFIX);
-    write_graphviz("after_remove_2.dot");
+    write_graphviz("2_after_remove_10.dot");
 
     delete tree;
     return 0;
