@@ -69,6 +69,10 @@ class BTree {
             return res;
         }
 
+        bool contains(T val) {
+            BTNode<T>* node = _find_node(root, val);
+            return (bool)node;
+        }
     private:
         void _add(BTNode<T>* last_node, BTNode<T>* new_node) {
             if(!last_node) {
@@ -182,5 +186,28 @@ class BTree {
             }
 
             res->push_back(last_node->value());
+        }
+
+        BTNode<T>* _find_node(BTNode<T>* last_node, T val,
+                              BTNode<T>** out_parent_node = NULL) {
+            if(!last_node)
+                return NULL;
+
+            T last_value = last_node->value();
+            auto left = last_node->left();
+            auto right = last_node->right();
+
+            if(last_value == val) {
+                return last_node;
+            } else {
+                if(out_parent_node)
+                    *out_parent_node = last_node;
+
+                if(val > last_value) {
+                    return _find_node(right, val);
+                } else {
+                    return _find_node(left, val);
+                }
+            }
         }
 };

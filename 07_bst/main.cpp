@@ -48,6 +48,12 @@ void traverse(traverse_order ord) {
     cout << endl;
 }
 
+void contains(int elem) {
+    bool res = tree->contains(elem);
+    cout << "contains(" << elem << ") returned: " << boolalpha << res
+         << noboolalpha << endl;
+}
+
 int main(void) {
     init();
 
@@ -69,6 +75,10 @@ int main(void) {
     traverse(PREFIX);
     traverse(INFIX);
     traverse(POSTFIX);
+
+    cout << endl;
+    contains(3);
+    contains(55);
 
     delete tree;
     return 0;
