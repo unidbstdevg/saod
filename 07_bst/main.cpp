@@ -23,6 +23,11 @@ void add(int elem) {
     tree->add(elem);
 }
 
+void remove(int elem) {
+    cout << "removing '" << elem << "'" << endl;
+    tree->remove(elem);
+}
+
 void height() {
     uint res = tree->height();
     cout << "height: " << res << endl;
@@ -87,6 +92,11 @@ int main(void) {
     cout << endl;
     contains(3);
     contains(55);
+
+    cout << endl;
+    remove(13);
+    traverse(PREFIX);
+    write_graphviz("after_remove_1.dot");
 
     delete tree;
     return 0;

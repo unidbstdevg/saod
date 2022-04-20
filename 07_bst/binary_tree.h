@@ -79,6 +79,21 @@ class BTree {
             return (bool)node;
         }
 
+        void remove(T val) {
+            BTNode<T>* parent_node = NULL;
+            BTNode<T>* node = _find_node(root, val, &parent_node);
+            if(!node)
+                return;
+
+            uint childrens_count = node->childrens_count();
+
+            switch(childrens_count) {
+            case 0:
+                _remove_leaf(node, parent_node);
+                break;
+            }
+        }
+
         void write_graphviz(std::string filename) {
             std::ofstream file;
             file.open(filename);
@@ -228,6 +243,21 @@ class BTree {
             }
         }
 
+        void _remove_leaf(BTNode<T>* node, BTNode<T>* parent_node) {
+            if(!node)
+                return;
+
+            if(node == root) {
+                root = NULL;
+            }
+
+            if(parent_node->left() == node)
+                parent_node->set_left(NULL);
+            else
+                parent_node->set_right(NULL);
+
+            delete node;
+        }
         void _write_graphviz(std::ofstream& file, BTNode<T>* last_node) {
             if(!last_node)
                 return;
