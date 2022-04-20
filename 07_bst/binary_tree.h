@@ -217,9 +217,9 @@ class BTree {
                     *out_parent_node = last_node;
 
                 if(val > last_value) {
-                    return _find_node(right, val);
+                    return _find_node(right, val, out_parent_node);
                 } else {
-                    return _find_node(left, val);
+                    return _find_node(left, val, out_parent_node);
                 }
             }
         }
