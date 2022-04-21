@@ -294,13 +294,18 @@ class BTree {
             auto left = last_node->left();
             auto right = last_node->right();
 
+            const auto LEFT_COLOR = " [color = \"red\"]";
+            const auto RIGHT_COLOR = " [color = \"blue\"]";
+
             if(left) {
-                file << last_node->value() << " -> " << left->value() << endl;
+                file << last_node->value() << " -> " << left->value()
+                     << LEFT_COLOR << endl;
                 _write_graphviz(file, last_node->left());
             }
 
             if(right) {
-                file << last_node->value() << " -> " << right->value() << endl;
+                file << last_node->value() << " -> " << right->value()
+                     << RIGHT_COLOR << endl;
                 _write_graphviz(file, last_node->right());
             }
         }
