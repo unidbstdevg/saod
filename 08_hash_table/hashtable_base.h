@@ -41,6 +41,8 @@ class HashTableBase {
 
             int collisions_count = 0;
             while(!arr[hashkey].empty()) {
+                collisions_count++;
+
                 if(arr[hashkey] == value)
                     return collisions_count;
 
@@ -48,7 +50,6 @@ class HashTableBase {
                     throw std::runtime_error("hashtable is full");
 
                 hashkey = next_hashkey(hashkey);
-                collisions_count++;
             }
             arr[hashkey] = value;
 
