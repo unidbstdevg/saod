@@ -94,13 +94,22 @@ int main(void) {
     contains(55);
 
     cout << endl;
+
     remove(13);
     traverse(PREFIX);
     write_graphviz("1_after_remove_13.dot");
+
     remove(10);
     traverse(PREFIX);
     write_graphviz("2_after_remove_10.dot");
 
+    remove(6);
+    traverse(PREFIX);
+    write_graphviz("3_after_remove_6.dot");
+
+    remove(8);
+    traverse(PREFIX);
+    write_graphviz("4_after_remove_8.dot");
     delete tree;
     return 0;
 }

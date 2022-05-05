@@ -247,6 +247,9 @@ class BTree {
             case 1:
                 _remove_bend(node, parent_node);
                 break;
+            case 2:
+                _remove_fork(node, parent_node);
+                break;
             }
         }
 
@@ -287,6 +290,21 @@ class BTree {
             delete node;
         }
 
+        void _remove_fork(BTNode<T>* node, BTNode<T>* parent_node) {
+            auto t = _find_largest(node->left());
+
+            auto t_val = t->value();
+            remove(t_val);
+            node->set_value(t_val);
+        }
+
+        BTNode<T>* _find_largest(BTNode<T>* node) {
+            auto right = node->right();
+            if(!right)
+                return node;
+            else
+                return _find_largest(right);
+        }
         void _write_graphviz(std::ofstream& file, BTNode<T>* last_node) {
             if(!last_node)
                 return;
