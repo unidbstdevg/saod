@@ -10,11 +10,15 @@ using std::chrono::milliseconds;
 
 HashTable1* hashtable1;
 HashTable2* hashtable2;
+HashTableList1* hashtablelist1;
+HashTableList2* hashtablelist2;
 
 void init(uint size) {
-    cout << "init with size " << size << endl;
+    cout << "init hashtables with size " << size << endl;
     hashtable1 = new HashTable1(size);
     hashtable2 = new HashTable2(size);
+    hashtablelist1 = new HashTableList1(size);
+    hashtablelist2 = new HashTableList2(size);
 }
 
 template <typename T>
@@ -32,7 +36,7 @@ void fill_table(std::vector<string> data, T table) {
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start).count();
 
-    cout << "tcollisions: " << collisions_count << endl;
+    cout << "collisions: " << collisions_count << endl;
     cout << "time: " << duration << " ms" << endl;
 }
 
@@ -44,6 +48,15 @@ void fill_tables(std::vector<string> data) {
     cout << "Filling hashtable2" << endl;
     fill_table(data, hashtable2);
     cout << endl;
+
+    cout << "Filling hashtablelist1" << endl;
+    fill_table(data, hashtablelist1);
+    cout << endl;
+
+    cout << "Filling hashtablelist2" << endl;
+    fill_table(data, hashtablelist2);
+    cout << endl;
+}
 }
 
 int main(int argc, char* argv[]) {
