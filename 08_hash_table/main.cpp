@@ -18,24 +18,17 @@ void init(uint size) {
 }
 
 template <typename T>
-void fill_table_from_file(std::string filename, T table) {
+void fill_table(std::vector<string> data, T table) {
     uint collisions_count = 0;
 
-    std::ifstream file(filename);
     auto start = high_resolution_clock::now();
-    if(file.is_open()) {
-        string line;
-        while(getline(file, line)) {
-            int key = stoi(line.substr(0, 5));
 
-            collisions_count += table->set(key, line);
-        }
+    for(auto const& line : data) {
+        int key = stoi(line.substr(0, 5));
 
-        file.close();
-    } else {
-        cout << "No such file: " << filename << endl;
-        exit(1);
+        collisions_count += table->set(key, line);
     }
+
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - start).count();
 
@@ -43,13 +36,13 @@ void fill_table_from_file(std::string filename, T table) {
     cout << "time: " << duration << " ms" << endl;
 }
 
-void fill_tables(std::string filename) {
+void fill_tables(std::vector<string> data) {
     cout << "Filling hashtable1" << endl;
-    fill_table_from_file(filename, hashtable1);
+    fill_table(data, hashtable1);
     cout << endl;
 
     cout << "Filling hashtable2" << endl;
-    fill_table_from_file(filename, hashtable1);
+    fill_table(data, hashtable2);
     cout << endl;
 }
 
@@ -72,8 +65,22 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    std::vector<string> data;
+    std::ifstream file(filename);
+    if(file.is_open()) {
+        string line;
+        while(getline(file, line)) {
+            data.push_back(line);
+        }
+
+        file.close();
+    } else {
+        cout << "No such file: " << filename << endl;
+        exit(1);
+    }
+
     init(size);
-    fill_tables(filename);
+    fill_tables(data);
 
     delete hashtable1;
     delete hashtable2;
