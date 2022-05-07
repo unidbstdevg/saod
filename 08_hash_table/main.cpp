@@ -6,6 +6,7 @@ using std::cout;
 using std::endl;
 using std::chrono::duration_cast;
 using std::chrono::high_resolution_clock;
+using std::chrono::microseconds;
 using std::chrono::milliseconds;
 
 HashTable1* hashtable1;
@@ -57,6 +58,42 @@ void fill_tables(std::vector<string> data) {
     fill_table(data, hashtablelist2);
     cout << endl;
 }
+
+template <typename T>
+void try_get(int key, T table) {
+    uint collisions_count = -1;
+
+    auto start = high_resolution_clock::now();
+    string value = table->get(key, &collisions_count);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start).count();
+
+    if(value.empty()) {
+        cout << "Not found" << endl;
+        return;
+    }
+
+    cout << "value: " << value << endl;
+    cout << "collisions: " << collisions_count << endl;
+    cout << "time: " << duration << " microseconds" << endl;
+}
+
+void try_gets(int key) {
+    cout << "Getting " << key << " from hashtable1" << endl;
+    try_get(key, hashtable1);
+    cout << endl;
+
+    cout << "Getting " << key << " from hashtable2" << endl;
+    try_get(key, hashtable2);
+    cout << endl;
+
+    cout << "Getting " << key << " from hashtablelist1" << endl;
+    try_get(key, hashtablelist1);
+    cout << endl;
+
+    cout << "Getting " << key << " from hashtablelist2" << endl;
+    try_get(key, hashtablelist2);
+    cout << endl;
 }
 
 int main(int argc, char* argv[]) {
@@ -93,7 +130,10 @@ int main(int argc, char* argv[]) {
     }
 
     init(size);
+    cout << endl;
     fill_tables(data);
+    cout << "------------------------------------------------" << endl << endl;
+    try_gets(24501);
 
     delete hashtable1;
     delete hashtable2;
