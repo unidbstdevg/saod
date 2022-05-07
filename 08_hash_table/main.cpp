@@ -97,8 +97,9 @@ void try_gets(int key) {
 }
 
 int main(int argc, char* argv[]) {
-    if(argc < 3) {
-        cout << "Usage: " << argv[0] << " {filename} {table_size}" << endl;
+    if(argc < 4) {
+        cout << "Usage: " << argv[0]
+             << " {filename} {table_size} {key1} [key2] [key3] ..." << endl;
         return 1;
     }
 
@@ -126,14 +127,29 @@ int main(int argc, char* argv[]) {
         file.close();
     } else {
         cout << "No such file: " << filename << endl;
-        exit(1);
+        return 1;
     }
 
     init(size);
     cout << endl;
+
     fill_tables(data);
     cout << "------------------------------------------------" << endl << endl;
-    try_gets(24501);
+
+    for(int i = 3; i < argc; i++) {
+        int key;
+        try {
+            key = std::stoi(argv[i]);
+        } catch(const std::invalid_argument& e) {
+            std::cout << "key argument should be number" << endl;
+            return 1;
+        }
+
+        try_gets(key);
+
+        cout << "------------------------------------------------" << endl
+             << endl;
+    }
 
     delete hashtable1;
     delete hashtable2;
