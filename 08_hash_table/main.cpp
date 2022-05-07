@@ -145,7 +145,12 @@ int main(int argc, char* argv[]) {
             return 1;
         }
 
-        try_gets(key);
+        if(key <= 999'9 || key > 999'99) {
+            std::cout << "Wrong key argument: " << key
+                      << ". It should be 5 digits" << endl << endl;
+        } else {
+            try_gets(key);
+        }
 
         cout << "------------------------------------------------" << endl
              << endl;
